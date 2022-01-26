@@ -19,6 +19,9 @@ export default function Home() {
         <p className={styles.description}>
           rethinking genome research
         </p>
+        <button>get started</button>
+        <button>login</button>
+        <button>explore</button>
 
       </main>
 
