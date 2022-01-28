@@ -21,7 +21,7 @@ export default function Home() {
         </p>
         <button>get started</button>
         <button>login</button>
-        <button>explore</button>
+        <a href='/community'>explore</a>
 
       </main>
 
