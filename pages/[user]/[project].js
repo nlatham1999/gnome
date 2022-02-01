@@ -9,7 +9,7 @@ export default function Project () {
     <Layout>
       <div>
         <p>Project Name: {project} </p>
-        <p>User {user}</p>
+        <p>User <a href={"/"+user}>{user}</a></p>
       </div>
     </Layout>
   )

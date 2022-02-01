@@ -19,8 +19,8 @@ export default function Home() {
         <p className={styles.description}>
           rethinking genome research
         </p>
-        <button>get started</button>
-        <button>login</button>
+        <button type="button" class="btn btn-primary" >get started</button>
+        <button type="button" class="btn btn-primary" >login</button>
         <a href='/community'>explore</a>
 
       </main>
