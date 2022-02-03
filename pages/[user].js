@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
-import Layout from '../components/layout'
 import { getUserProjects } from '../lib/user'
 import { GetServerSideProps } from 'next'
+import TopBar from '../components/top-bar'
 
 export async function getServerSideProps(context) {
 
@@ -19,8 +19,8 @@ export default function User ({data}) {
   const { user } = router.query
 
   return (
-    <Layout>
       <div>
+        <TopBar />
         <p>User {user}</p>
         {/* {data[0].name} */}
         {data.map((project, i) => (
@@ -34,7 +34,6 @@ export default function User ({data}) {
           </div> 
         ))}
       </div>
-    </Layout>
   )
 
 }
