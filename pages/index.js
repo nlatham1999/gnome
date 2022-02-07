@@ -4,11 +4,15 @@ import { LoginPage } from '../components/login-page'
 import { useState } from 'react';
 import HomePage from '../components/home-page';
 import { isLoggedIn} from '../lib/fake-data';
+import { useUser } from '@auth0/nextjs-auth0';
 
 
 
 export default function Home() {
+  const { user, error, isLoading } = useUser();
  
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
 
   return (
     <div className={styles.container}>
@@ -20,8 +24,8 @@ export default function Home() {
       </Head>
 
 
-      {!isLoggedIn() && <LoginPage />}
-      {isLoggedIn() && <HomePage />}
+      {!user && <LoginPage />}
+      {user && <HomePage />}
     </div>
   )
 }

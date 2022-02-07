@@ -17,8 +17,9 @@ export function LoginPage () {
                 rethinking genome research
                 </p>
                 <button type="button" class="btn btn-primary" >get started</button>
-                <button type="button" class="btn btn-primary" onClick={() => logIn()} >login</button>
+                <button type="button" class="btn btn-primary" href="/api/auth/login" >login</button>
                 <a href='/community'>explore</a>
+                <a href="/api/auth/login">Login</a>
 
             </main>
 

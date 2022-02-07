@@ -1,5 +1,6 @@
 import { getUserName, isLoggedIn, logout } from "../lib/fake-data"
 import { useRouter } from "next/router";
+import Router from 'next/router'
 
 export default function TopBar () {
 
@@ -24,9 +25,7 @@ export default function TopBar () {
                     </li>
                     
                 </ul>
-                <button type="button" class="btn btn-primary" onClick={() => logoutUser()}>
-                    logout
-                </button>
+                <a href="/api/auth/logout">Logout</a>
             </div>
 
         </nav>
@@ -38,7 +37,7 @@ export default function TopBar () {
 
     function logoutUser(){
         // logout();
-        router.push("/")
+        Router.push("/")
 
     }
 }
