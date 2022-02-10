@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { Navbar } from 'react-bootstrap'
+import TopBar from '../../components/top-bar'
 
 export default function Project () {
   const router = useRouter()

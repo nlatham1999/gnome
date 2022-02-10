@@ -1,12 +1,16 @@
 import { getUserName, isLoggedIn, logout } from "../lib/fake-data"
 import { useRouter } from "next/router";
 import Router from 'next/router'
+import { useUser } from '@auth0/nextjs-auth0';
 
 export default function TopBar () {
 
-    const userName = getUserName()
+    const { user, error, isLoading } = useUser();
+   
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>{error.message}</div>;
 
-    const router = useRouter();
+    if(!user) return <div>You should not be seeing this</div>
 
     return (
         <div>
@@ -15,29 +19,26 @@ export default function TopBar () {
             <div class="container-fluid">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">gnome</a>
+                        <a class="navbar-brand" href="/">gnome</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href={"/"+userName + "/projects"}>projects</a>
+                        <a class="nav-link" href={"/"+user.nickname + "/projects"}>projects</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href={"/" + userName}>profile</a>
+                        <a class="nav-link" href={"/community"}>community</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/api/auth/logout">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href={"/" + user.nickname}>{user.nickname}</a>
                     </li>
                     
                 </ul>
-                <a href="/api/auth/logout">Logout</a>
+                
             </div>
 
         </nav>
-        
-        {isLoggedIn() && <div>YES</div>}
-        {!isLoggedIn() && <div>NO</div>}
         </div>
     )
-
-    function logoutUser(){
-        // logout();
-        Router.push("/")
-
-    }
 }
