@@ -16,12 +16,8 @@ export function LoginPage () {
                 <p className={styles.description}>
                 rethinking genome research
                 </p>
-                <button type="button" class="btn btn-primary" >
-                    <a href="/api/auth/login">Get Started</a>
-                </button>
-                <button type="button" class="btn btn-primary">
-                    <a href="/api/auth/login">Login</a>
-                </button>
+                <a href="/api/auth/login">sign up</a>
+                <a href="/api/auth/login">login</a>
                 <a href='/community'>explore</a>
 
             </main>

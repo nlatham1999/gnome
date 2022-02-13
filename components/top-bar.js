@@ -2,6 +2,8 @@ import { getUserName, isLoggedIn, logout } from "../lib/fake-data"
 import { useRouter } from "next/router";
 import Router from 'next/router'
 import { useUser } from '@auth0/nextjs-auth0';
+import TopBarLoggedIn from "./top-bar-logged-in";
+import TopBarLoggedOut from "./top-bar-logged-out";
 
 export default function TopBar () {
 
@@ -10,35 +12,9 @@ export default function TopBar () {
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>{error.message}</div>;
 
-    if(!user) return <div>You should not be seeing this</div>
+    if(!user) return <div><TopBarLoggedOut /></div>
 
     return (
-        <div>
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-
-            <div class="container-fluid">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="navbar-brand" href="/">gnome</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href={"/"+user.nickname + "/projects"}>projects</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href={"/community"}>community</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/api/auth/logout">Logout</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href={"/" + user.nickname}>{user.nickname}</a>
-                    </li>
-                    
-                </ul>
-                
-            </div>
-
-        </nav>
-        </div>
+        <TopBarLoggedIn user={user} />
     )
 }
