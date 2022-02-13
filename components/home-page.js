@@ -4,6 +4,10 @@ import { useUser } from '@auth0/nextjs-auth0';
 import FeedRow from "./feed-row";
 import { GetServerSideProps } from 'next'
 
+import { Card } from "react-bootstrap";
+
+import styles from "./home-page.module.css"
+
 export default function HomePage () {
 
     const { user, error, isLoading } = useUser();
@@ -19,9 +23,16 @@ export default function HomePage () {
     return (
         <div>
             <TopBar />
-            {data.map((row, i) => (
-                <FeedRow data={row}/>
-            ))}
+            <Card className={styles.sectionCard}>
+                <Card.Header>
+                    Feed
+                </Card.Header>
+                <Card.Body>
+                    {data.map((row, i) => (
+                    <FeedRow data={row}/>
+                    ))}
+                </Card.Body>
+            </Card>
         </div>
     )
 }
