@@ -1,6 +1,18 @@
 
 .sectionCard {
     margin-top: 2vh;
+    max-height: 70vh;
+}
+
+.sectionCardBody {
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.cardBody::-webkit-scrollbar {
+    display: none;
 }
 
 .sectionCardBody {

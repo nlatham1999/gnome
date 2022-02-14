@@ -27,7 +27,7 @@ export default function HomePage () {
                 <Card.Header>
                     Feed
                 </Card.Header>
-                <Card.Body>
+                <Card.Body className={styles.sectionCardBody}>
                     {data.map((row, i) => (
                     <FeedRow data={row}/>
                     ))}

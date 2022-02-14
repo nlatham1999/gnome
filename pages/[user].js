@@ -2,6 +2,8 @@ import { useRouter } from 'next/router'
 import { getUserProjects } from '../lib/user'
 import { GetServerSideProps } from 'next'
 import TopBar from '../components/top-bar'
+import UserPage from "../components/user-page"
+
 
 export async function getServerSideProps(context) {
 
@@ -21,18 +23,10 @@ export default function User ({data}) {
   return (
       <div>
         <TopBar />
-        <p>User {user}</p>
+
+        <UserPage userName={user} data={data}/>
         {/* {data[0].name} */}
-        {data.map((project, i) => (
-            <div class="card">
-              <div class="card-header">
-                  <a href={"/"+user+"/"+project.name}>{project.name}</a>
-              </div>
-              <div class="card-body">
-                  <div>{project.description}</div>
-              </div>
-          </div> 
-        ))}
+        
       </div>
   )
 
