@@ -18,7 +18,7 @@ export function LoginPage () {
                 </p>
                 <a href="/api/auth/login">sign up</a>
                 <a href="/api/auth/login">login</a>
-                <a href='/community'>explore</a>
+                {/* <a href='/community'>explore</a> */}
 
             </main>
 

@@ -14,14 +14,14 @@ export default function TopBarLoggedIn({user}){
                     <li class="nav-item">
                         <a class="nav-link" href={"/"+user.nickname + "/projects"}>projects</a>
                     </li>
-                    <li class="nav-item">
+                    {/* <li class="nav-item">
                         <a class="nav-link" href={"/community"}>community</a>
+                    </li> */}
+                    <li class="nav-item">
+                        <a class="nav-link" href={"/" + user.nickname}>{user.nickname}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/api/auth/logout">logout</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href={"/" + user.nickname}>{user.nickname}</a>
                     </li>
                     
                 </ul>
