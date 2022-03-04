@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { Navbar } from 'react-bootstrap'
+import { Navbar, Card } from 'react-bootstrap'
 import TopBar from '../../components/top-bar'
 
 export default function Project () {
@@ -10,6 +10,15 @@ export default function Project () {
 
       <div>
         <TopBar />
+        <Card>
+          <Card.Header>
+            {project}
+          </Card.Header>
+          <Card.Body>
+            <p>owner</p>
+          </Card.Body>
+
+        </Card>
         <p>Project Name: {project} </p>
         <p>User <a href={"/"+username}>{username}</a></p>
       </div>

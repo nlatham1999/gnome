@@ -2,10 +2,8 @@ import TopBar from "./top-bar";
 import { getUserFeed } from "../lib/feed";
 import { useUser } from '@auth0/nextjs-auth0';
 import FeedRow from "./feed-row";
-import { GetServerSideProps } from 'next'
-
+// import { GetServerSideProps } from 'next'
 import { Card } from "react-bootstrap";
-
 import styles from "./home-page.module.css"
 
 export default function HomePage () {
@@ -14,6 +12,9 @@ export default function HomePage () {
 
     var data = getUserFeed(user)
 
+    // var userInfo = getUserFromDB(user.email);
+
+    // console.log(userInfo)
    
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>{error.message}</div>;

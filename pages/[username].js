@@ -7,10 +7,10 @@ import UserPage from "../components/user-page"
 
 export async function getServerSideProps(context) {
 
-  const { user } = context.query
+  const { username } = context.query
 
-  var data = getUserProjects(user)
-  var profileData = getUserProfile(user)
+  var data = getUserProjects(username)
+  var profileData = getUserProfile(username)
 
 
   return {

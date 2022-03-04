@@ -14,6 +14,7 @@ export default function UserPage({userName, data, profileData}){
 
     var isUser = user && user.nickname == userName
     
+    console.log(data);
 
     return (
         <>
