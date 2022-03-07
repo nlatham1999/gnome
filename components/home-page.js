@@ -10,8 +10,6 @@ import { useEffect, useState } from "react";
 export default function HomePage () {
 
     const { user, error, isLoading } = useUser();
-
-    var data = getUserFeed(user)
    
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>{error.message}</div>;
@@ -24,16 +22,17 @@ export default function HomePage () {
     }, []);
 
     let GetUserInformation = async () => {
-        let res = await fetch("http://localhost:3000/api/users/"+user.nickname, {
+        let res = await fetch("http://localhost:3000/api/users/"+user.email, {
             method: "GET",
             headers: {
             "Content-Type": "application/json",
             },
         });
         let userInfo = await res.json();
-        setUserInformation(userInfo)
-        if(userInformation.data.length == 0){
+        if(userInfo.data.length == 0){
             setShowNewUser(true)
+        }else{
+            setUserInformation(userInfo.data[0])
         }
     }
 
@@ -43,39 +42,48 @@ export default function HomePage () {
     
     const handleAddNewUser = async () => {
         setShowNewUser(false);
-        let res = await fetch("http://localhost:3000/api/users", {
-          method: "POST",
-          body: JSON.stringify({
+
+        const newUserObject = {
             user: user.nickname,
             projects: [],
             contributions: [],
             email: user.email,
             bio: "",
-            website: ""
-          }),
+            website: "",
+            email: user.email,
+            feed: [],
+            following: [],
+            followers: [],
+        }
+
+        let res = await fetch("http://localhost:3000/api/users", {
+          method: "POST",
+          body: JSON.stringify(newUserObject),
         });
         res = await res.json();
+        setUserInformation(newUserObject)
     }
 
     return (
         <div>
             <TopBar />
-            <Card className={styles.sectionCard}>
+            {userInformation.feed && <Card className={styles.sectionCard}>
                 <Card.Header>
                     Feed
                 </Card.Header>
                 <Card.Body className={styles.sectionCardBody}>
-                    {data.map((row, i) => (
+                    {userInformation.feed.map((row, i) => (
                     <FeedRow data={row}/>
                     ))}
+                    {userInformation.feed.length == 0 && "no feed yet, follow more people"}
                 </Card.Body>
-            </Card>
+            </Card>}
 
             <Modal  show={showNewUser}>
                 <Modal.Header>
                 </Modal.Header>
                 <Modal.Body>
-                        user: {user.nickname} not found. if you are a new user click on set up to finish setting up
+                        user: {user.email} not found. if you are a new user click on set up to finish setting up
                 </Modal.Body>
                 <Modal.Footer>
                     <Button type="submit" onClick={() => handleAddNewUser()}>set up</Button>

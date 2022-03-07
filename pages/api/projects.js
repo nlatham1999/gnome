@@ -11,8 +11,7 @@ export default withApiAuthRequired(async function handler(req, res) {
     case "POST":
       let bodyObject = JSON.parse(req.body);
       let newProj = await db.collection("projects").insertOne(bodyObject);
-      let addedProj = await db.collection("users").updateOne({user: bodyObject.user}, {$push: {projects: newProj.insertedId}})
-      console.log(newProj)
+      let addedProj = await db.collection("users").updateOne({email: bodyObject.email}, {$push: {projects: newProj.insertedId}})
       res.json({project: newProj, user: addedProj});
 
       break;

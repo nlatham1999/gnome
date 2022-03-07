@@ -3,7 +3,7 @@ import { Card, Row, Col, Modal, Button, Form } from "react-bootstrap"
 import styles from "./profile-section.module.css"
 import { useUser } from '@auth0/nextjs-auth0';
 import { useState } from "react";
-import { setProfileData } from "../lib/user";
+// import { setProfileData } from "../lib/user";
 
 export default function ProfileSection({userName, profileData}){
 
@@ -20,11 +20,19 @@ export default function ProfileSection({userName, profileData}){
     //handlers for the edit profile modal
     const handleCloseEdit = () => setEditProfile(false);
     const handleShowEdit = () => setEditProfile(true);
-    const handleSaveEdit = () => {
+    const handleSaveEdit = async () => {
         profileData.website = newProfileData.website
         profileData.bio = newProfileData.bio
         setEditProfile(false)
-        setProfileData(userName, profileData)
+        let res = await fetch("http://localhost:3000/api/users", {
+          method: "PUT",
+          body: JSON.stringify({
+              email: user.email,
+              bio: newProfileData.bio,
+              website: newProfileData.website,
+          }),
+        });
+        res = await res.json();
     }
 
     //handlers for the following/followers modal
